@@ -19,59 +19,59 @@ CYAN='\033[0;36m'
 LIGHT='\033[0;37m'
 # ==========================================
 # Link Hosting Kalian Untuk Ssh Vpn
-akbarvpn="raw.githubusercontent.com/kuyaxxx/sc/ipuk/ssh"
+akbarvpn="raw.githubusercontent.com/kuyaxxx/vaksin/main/ssh"
 # Link Hosting Kalian Untuk Sstp
-akbarvpnn="raw.githubusercontent.com/myridwan/sc/ipuk/sstp"
+akbarvpnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/sstp"
 # Link Hosting Kalian Untuk Ssr
-akbarvpnnn="raw.githubusercontent.com/myridwan/sc/ipuk/ssr"
+akbarvpnnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/ssr"
 # Link Hosting Kalian Untuk Shadowsocks
-akbarvpnnnn="raw.githubusercontent.com/myridwan/sc/ipuk/shadowsocks"
+akbarvpnnnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/shadowsocks"
 # Link Hosting Kalian Untuk Wireguard
-akbarvpnnnnn="raw.githubusercontent.com/myridwan/sc/ipuk/wireguard"
+akbarvpnnnnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/wireguard"
 # Link Hosting Kalian Untuk Xray
-akbarvpnnnnnn="raw.githubusercontent.com/myridwan/sc/ipuk/xray"
+akbarvpnnnnnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/xray"
 # Link Hosting Kalian Untuk Ipsec
-akbarvpnnnnnnn="raw.githubusercontent.com/myridwan/sc/ipuk/ipsec"
+akbarvpnnnnnnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/ipsec"
 # Link Hosting Kalian Untuk Backup
-akbarvpnnnnnnnn="raw.githubusercontent.com/myridwan/sc/ipuk/backup"
+akbarvpnnnnnnnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/backup"
 # Link Hosting Kalian Untuk Websocket
-akbarvpnnnnnnnnn="raw.githubusercontent.com/myridwan/sc/ipuk/websocket"
+akbarvpnnnnnnnnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/websocket"
 # Link Hosting Kalian Untuk Ohp
-akbarvpnnnnnnnnnn="raw.githubusercontent.com/myridwan/sc/ipuk/ohp"
+akbarvpnnnnnnnnnn="raw.githubusercontent.com/kuyaxxx/vaksin/main/ohp"
 
 # Getting
 echo -e ""
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "\E[44;1;39m          ⇱ SCRIPT BY RIDWAN ⇲          \E[0m"
+echo -e "\E[44;1;39m          ⇱ SCRIPT BY N@R.   ⇲          \E[0m"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
 echo -e ""
 sleep 5
 MYIP=$(wget -qO- icanhazip.com);
-IZIN=$( curl https://myridwan.github.io/izin | grep $MYIP )
-echo "Memeriksa Hak Akses VPS..."
-if [ $MYIP = $IZIN ]; then
-clear
-echo -e "${CYAN}Akses Diizinkan...${off}"
-sleep 1
-else
-clear
-echo -e "${PURPLE}Akses Diblokir!${off}"
-echo "Hanya Untuk Pengguna Berbayar!"
-echo "Silahkan Hubungi Admin"
-exit 0
-fi
+#IZIN=$( curl https://myridwan.github.io/izin | grep $MYIP )
+#echo "Memeriksa Hak Akses VPS..."
+#if [ $MYIP = $IZIN ]; then
+#clear
+#echo -e "${CYAN}Akses Diizinkan...${off}"
+#sleep 1
+#else
+#clear
+#echo -e "${PURPLE}Akses Diblokir!${off}"
+#echo "Hanya Untuk Pengguna Berbayar!"
+#echo "Silahkan Hubungi Admin"
+#exit 0
+#fi
 clear
 echo "Checking VPS"
 clear
 sleep 1
 echo -e ""
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "\E[44;1;39m          ⇱ Menu Utama Ridwan ⇲          \E[0m"
+echo -e "\E[44;1;39m          ⇱ Menu Utama Kuyax  ⇲          \E[0m"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
 echo -e ""
 sleep 2
-mkdir /var/lib/akbarstorevpn;
-echo "IP=" >> /var/lib/akbarstorevpn/ipvps.conf
+mkdir /var/lib/kuyax;
+echo "IP=" >> /var/lib/kuyax/ipvps.conf
 wget https://${akbarvpn}/cf.sh && chmod +x cf.sh && ./cf.sh
 #install v2ray
 echo -e ""
