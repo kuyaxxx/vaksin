@@ -1,36 +1,7 @@
 #!/bin/bash
-GREEN='\033[0;32m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-NC='\033[0m'
-yl='\e[32;1m'
-bl='\e[36;1m'
-gl='\e[32;1m'
-rd='\e[31;1m'
-mg='\e[0;95m'
-blu='\e[34m'
-op='\e[35m'
-or='\033[1;33m'
-bd='\e[1m'
-color1='\e[031;1m'
-color2='\e[34;1m'
-color3='\e[0m'
-# Getting
-# IP Validation
-dateFromServer=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
-biji=`date +"%Y-%m-%d" -d "$dateFromServer"`
+
+MYIP=$(curl -sS ipv4.icanhazip.com)
 #########################
-
-MYIP=$(curl -sS ipinfo.io/ip)
-
-red='\e[1;31m'
-green='\e[1;32m'
-NC='\e[0m'
-green() { echo -e "\\033[32;1m${*}\\033[0m"; }
-red() { echo -e "\\033[31;1m${*}\\033[0m"; }
-PERMISSION
-clear
-
 # GETTING OS INFORMATION
 source /etc/os-release
 Versi_OS=$VERSION
@@ -60,8 +31,8 @@ oovpn=$(echo "${openvpn_service}" | grep 'ActiveState=' | cut -f2 -d=)
 #status_openvp=$(/etc/init.d/openvpn status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 #status_ss_tls="$(systemctl show shadowsocks-libev-server@tls.service --no-page)"
 #ss_tls=$(echo "${status_ss_tls}" | grep 'ActiveState=' | cut -f2 -d=)
-sst_status=$(systemctl status shadowsocks-libev-server@tls | grep Active | awk '{print $0}' | cut -d "(" -f2 | cut -d ")" -f1) 
-ssh_status=$(systemctl status shadowsocks-libev-server@http | grep Active | awk '{print $0}' | cut -d "(" -f2 | cut -d ")" -f1) 
+sst_status=$(systemctl status shadowsocks-libev-server@tls | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1) 
+ssh_status=$(systemctl status shadowsocks-libev-server@http | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1) 
 #status_ss_http="$(systemctl show shadowsocks-libev-server@http.service --no-page)"
 #ss_http=$(echo "${status_ss_http}" | grep 'ActiveState=' | cut -f2 -d=)
 #sssohtt=$(systemctl status shadowsocks-libev-server@*-http | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
@@ -77,7 +48,7 @@ dropbear_status=$(/etc/init.d/dropbear status | grep Active | awk '{print $3}' |
 stunnel_service=$(/etc/init.d/stunnel5 status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 sstp_service=$(systemctl status accel-ppp | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 squid_service=$(/etc/init.d/squid status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
-ssh_service=$(/etc/init.d/ssh status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+ssh_service=$(/etc/init.d/ssh status | grep Active | awk '{print $3}' | head -n1 | cut -d "(" -f2 | cut -d ")" -f1)
 vnstat_service=$(/etc/init.d/vnstat status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 cron_service=$(/etc/init.d/cron status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 fail2ban_service=$(/etc/init.d/fail2ban status | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
@@ -129,9 +100,9 @@ fi
 
 # STATUS SERVICE  SSH 
 if [[ $ssh_service == "running" ]]; then 
-   status_ssh=" ${GREEN}Running ${NC}( No Error )"
+   service_ssh=" ${GREEN}Running ${NC}( No Error )"
 else
-   status_ssh="${RED}  Not Running ${NC}  ( Error )"
+   service_ssh="${RED}  Not Running ${NC}  ( Error )"
 fi
 
 # STATUS SERVICE  SQUID 
@@ -344,48 +315,43 @@ kernelku=$(uname -r)
 Domen="$(cat /etc/xray/domain)"
 echo -e ""
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "\E[44;1;39m              ⇱ Sytem Information ⇲             \E[0m"
+echo -e "\E[41;1;39m              ⇱ Sytem Information ⇲             \E[0m"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "❇️ Hostname    : $HOSTNAME"
-echo -e "❇️ OS Name     : $Tipe"
+echo -e "💠 Hostname    : $HOSTNAME"
+echo -e "💠 OS Name     : $Tipe"
 #echo -e "Processor   : $tipeprosesor"
 #echo -e "Proc Core   :$totalcore"
 #echo -e "Virtual     :$typevps"
 #echo -e "Cpu Usage   :$cpu_usage"
-echo -e "❇️ Total RAM   : ${totalram}MB"
-echo -e "❇️ Public IP   : $MYIP"
-echo -e "❇️ Domain      : $Domen"
+echo -e "💠 Total RAM   : ${totalram}MB"
+echo -e "💠 Public IP   : $MYIP"
+echo -e "💠 Domain      : $Domen"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "\E[44;1;39m          ⇱ Subscription Information ⇲          \E[0m"
+echo -e "\E[41;1;39m          ⇱ Subscription Information ⇲          \E[0m"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "❇️ Client Name : $Name"
-echo -e "❇️ Exp Script  : $Exp"
-echo -e "❇️ Version     : Latest Version"
+echo -e "💠 Client Name : $Name"
+echo -e "💠 Exp Script  : $Exp2"
+echo -e "💠 Version     : Beta Version"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "\E[44;1;39m            ⇱ Service Information ⇲             \E[0m"
+echo -e "\E[41;1;39m            ⇱ Service Information ⇲             \E[0m"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
-echo -e "❇️ SSH / TUN               :$status_ssh"
-echo -e "❇️ OpenVPN                 :$status_openvpn"
-echo -e "❇️ Dropbear                :$status_beruangjatuh"
-echo -e "❇️ Stunnel5                :$status_stunnel"
-echo -e "❇️ Fail2Ban                :$status_fail2ban"
-echo -e "❇️ Crons                   :$status_cron"
-echo -e "❇️ Vnstat                  :$status_vnstat"
-echo -e "❇️ L2TP                    :$status_l2tp"
-echo -e "❇️ SSTP                    :$status_sstp"
-echo -e "❇️ XRAYS Vmess TLS         :$status_tls_v2ray"
-echo -e "❇️ XRAYS Vmess None TLS    :$status_nontls_v2ray"
-echo -e "❇️ XRAYS Vless TLS         :$status_tls_vless"
-echo -e "❇️ XRAYS Vless None TLS    :$status_nontls_vless"
-echo -e "❇️ Shadowsocks-OBFS HTTP   :$status_ssh"
-echo -e "❇️ XRAYS Trojan            :$status_virus_trojan"
-echo -e "❇️ Trojan GO               :$status_trgo"
-echo -e "❇️ Websocket TLS           :$swstls"
-echo -e "❇️ Websocket None TLS      :$swsdrop"
-echo -e "❇️ Websocket Ovpn          :$swsovpn"
-echo -e "❇️ OHP Dropbear            :$sohp"
-echo -e "❇️ OHP OpenVPN             :$sohq"
-echo -e "❇️ OHP SSH                 :$sohr"
-echo -e "❇️ SSL / SSH Multiplexer   :$sosslh"
+echo -e "⚙️ SSH WS & WSS            :$service_ssh"
+echo -e "⚙️ OpenVPN                 :$status_openvpn"
+echo -e "⚙️ Dropbear                :$status_beruangjatuh"
+echo -e "⚙️ Squid                   :$status_squid"
+echo -e "⚙️ Fail2Ban                :$status_fail2ban"
+echo -e "⚙️ Crons                   :$status_cron"
+echo -e "⚙️ Vnstat                  :$status_vnstat"
+echo -e "⚙️ XRAYS Vmess TLS         :$status_tls_v2ray"
+echo -e "⚙️ XRAYS Vmess None TLS    :$status_nontls_v2ray"
+echo -e "⚙️ XRAYS Vless TLS         :$status_tls_vless"
+echo -e "⚙️ XRAYS Vless None TLS    :$status_nontls_vless"
+echo -e "⚙️ Shadowsocks-R           :$status_ssr"
+echo -e "⚙️ Shadowsocks-OBFS HTTPS  :$status_sst"
+echo -e "⚙️ Shadowsocks-OBFS HTTP   :$status_ssh"
+echo -e "⚙️ XRAYS Trojan            :$status_virus_trojan"
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
 echo ""
+read -n 1 -s -r -p "Klik Enter Untuk Kembali Ke menu"
+
+menu
