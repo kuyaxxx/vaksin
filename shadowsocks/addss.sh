@@ -42,7 +42,7 @@ http=3443
 else
 http="$((lastport2+1))"
 fi
-source /var/lib/akbarstorevpn/ipvps.conf
+source /var/lib/kuyax/ipvps.conf
 if [[ "$IP2" = "" ]]; then
 domain=$(cat /etc/xray/domain)
 else
